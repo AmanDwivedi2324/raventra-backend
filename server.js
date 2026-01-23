@@ -23,7 +23,13 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://www.raventra.in", // The one you specifically asked for
+    "http://localhost:3000"    // REQUIRED for you to work on your laptop
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Static Folder for Uploads
