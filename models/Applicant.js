@@ -6,14 +6,9 @@ const applicantSchema = mongoose.Schema(
     email: { type: String, required: true },
     phone: { type: String, required: true },
     position: { type: String, required: true },
-    resume: { type: String, required: true }, 
-    status: {
-      type: String,
-      enum: ["Pending", "Reviewed", "Interview", "Rejected"],
-      default: "Pending",
-    },
+    resume: { type: String, required: true }, // Stores the file path
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Applicant = mongoose.model("Applicant", applicantSchema);
