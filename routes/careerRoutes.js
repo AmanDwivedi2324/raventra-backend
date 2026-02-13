@@ -4,6 +4,7 @@ import path from "path";
 import {
   createApplicant,
   getApplicants,
+  deleteApplicant,
 } from "../controllers/careerController.js";
 
 const router = express.Router();
@@ -37,5 +38,6 @@ const upload = multer({
 
 router.post("/", upload.single("resume"), createApplicant);
 router.get("/all", getApplicants);
+router.delete("/:id", deleteApplicant);
 
 export default router;

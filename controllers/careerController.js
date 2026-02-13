@@ -39,3 +39,24 @@ export const getApplicants = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+export const deleteApplicant = async (req, res) => {
+  try {
+    const applicant = await Applicant.findById(req.params.id);
+
+    if (!applicant) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Applicant not found" });
+    }
+
+    // Delete from Database
+    await Applicant.findByIdAndDelete(req.params.id);
+
+    res
+      .status(200)
+      .json({ success: true, message: "Application deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

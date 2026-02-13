@@ -20,13 +20,13 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "raventra-projects", // Folder name in Cloudinary
-    allowed_formats: ["jpg", "png", "jpeg", "webp"], // Allowed file types
+    allowed_formats: ["jpg", "png", "jpeg", "webp"],
   },
 });
 
 const upload = multer({ storage: storage });
 
-// 3. Routes (Same as before, just using the new 'upload')
+// 3. Routes (Now using Cloudinary upload)
 router.post("/", upload.single("image"), createProject);
 router.get("/", getProjects);
 router.get("/:id", getProjectById);
