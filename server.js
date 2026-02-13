@@ -12,6 +12,7 @@ dotenv.config();
 import connectDB from "./config/db.js";
 import careerRoutes from "./routes/careerRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
+import inventoryRoutes from "./routes/inventoryRoutes.js";
 
 // Recreate __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -38,6 +39,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes
 app.use("/api/career", careerRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/inventory", inventoryRoutes);
 
 const PORT = process.env.PORT || 5000;
 
