@@ -4,7 +4,7 @@ import Inventory from "../models/Inventory.js";
 // @route   GET /api/inventory
 export const getInventory = async (req, res) => {
   try {
-    const items = await Inventory.find().sort({ name: 1 });
+    const items = await Inventory.find().sort({ createdAt: -1 });
     res.status(200).json({ success: true, data: items });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -15,8 +15,7 @@ export const getInventory = async (req, res) => {
 // @route   POST /api/inventory
 export const addItem = async (req, res) => {
   try {
-    const { name, category, quantity, unit, minLevel } = req.body;
-    const newItem = await Inventory.create({ name, category, quantity, unit, minLevel });
+    const newItem = await Inventory.create(req.body); // Dynamically saves all fields
     res.status(201).json({ success: true, data: newItem });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });

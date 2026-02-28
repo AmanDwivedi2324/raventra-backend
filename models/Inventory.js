@@ -2,11 +2,26 @@ import mongoose from "mongoose";
 
 const inventorySchema = mongoose.Schema(
   {
-    name: { type: String, required: true }, // e.g., "Mono Perc 540W Panel"
-    category: { type: String, required: true }, // e.g., "Solar Panels"
+    // Basic Info
+    name: { type: String, required: true },
+    sku: { type: String, default: "" }, // Item Code
+    category: { type: String, required: true },
+    brand: { type: String, default: "" },
+
+    // Stock Details
     quantity: { type: Number, required: true, default: 0 },
-    unit: { type: String, required: true }, // e.g., "pcs", "meters"
-    minLevel: { type: Number, default: 5 }, // Alert if stock goes below this
+    unit: { type: String, required: true },
+    minLevel: { type: Number, default: 5 },
+    location: { type: String, default: "" },
+
+    // Solar Specifics
+    capacity: { type: String, default: "" },
+    warrantyYears: { type: Number, default: 0 },
+    serialNumbers: { type: String, default: "" }, // Stored as comma-separated string for simplicity
+
+    // Financials & Vendors
+    purchasePrice: { type: Number, default: 0 },
+    supplierName: { type: String, default: "" },
   },
   { timestamps: true }
 );
